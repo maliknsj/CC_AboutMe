@@ -17,17 +17,20 @@ class MainActivity : AppCompatActivity() {
     lateinit var nickname:TextView
     lateinit var done:Button
     lateinit var binding:ActivityMainBinding
+    val aboutMe:AboutMe=AboutMe("Imran Khan")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //setContentView(R.layout.activity_main)
         //commented because I'm using binding class
         binding=DataBindingUtil.setContentView(this,R.layout.activity_main)
+        binding.aboutMe=aboutMe
+
         //findViews()
         //no need to find views
         binding.donebtn.setOnClickListener(){
             binding.apply {
-                nickname.text=binding.editTextTextPersonName.text.toString()
+                aboutMe?.nickname=binding.editTextTextPersonName.text.toString()
                 invalidateAll()
                 nickname.visibility= View.VISIBLE
                 editTextTextPersonName.visibility=View.GONE
